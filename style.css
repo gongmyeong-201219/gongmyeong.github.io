@@ -37,7 +37,7 @@ body {
   overflow: hidden;
 }
 
-.iframe{
+.gm-music iframe{
   position: relative;
   z-index: 100;
   margin-bottom: 1142px;
