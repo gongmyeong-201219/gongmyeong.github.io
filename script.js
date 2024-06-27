@@ -543,7 +543,7 @@ var Framer = {
             {
                 artist: "Kavinsky",
                 song: "Odd Look ft. The Weeknd",
-                url: "//katiebaca.com/tutorial/odd-look.mp3"
+                url: "https://soundcloud.com/glnymwxutvov/sets/gongmyeong?si=b6f6eba4e9134f0880f0d1daeee122c5&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
             }
         ],
 
