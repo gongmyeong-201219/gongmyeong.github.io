@@ -37,6 +37,10 @@ body {
   overflow: hidden;
 }
 
+.iframe{
+  z-index: 100;
+}
+
 a {
   color: #fff;
   text-decoration: none;
