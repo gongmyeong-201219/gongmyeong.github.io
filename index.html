@@ -45,29 +45,25 @@
   </ul>
 </nav>
 
- <div class="container">
-        <h1>음악 플레이어</h1>
-        <div class="music-container" id="musicContainer">
-            <div class="music-info">
-                <h4 id="title">노래 제목</h4>
-                <div class="progress-container" id="progress-container">
-                    <div class="progress" id="progress"></div>
-                </div>
-            </div>
-            <audio id="audio" src="./music/hey.mp3" onloadstart="this.volume=0.005"></audio>
-                <div class="img-container">
-                    <img src="./images/summer.jpg" alt="cover" id="cover">
-                </div>
-                <div class="navigation">
-                    <button id="prev" class="action-btn"><i class="fa-sharp fa-solid fa-backward"></i></button>
-                    <button id="play" class="actiong-btn big"><i class="fa-solid fa-play"></i></button>
-                    <button id="next" class="actiong-btn"><i class="fa-sharp fa-solid fa-forward"></i></button>
-                </div>
-            
-
-        </div>
-
+<!-- MUSIC -->
+  
+ <div class="player">
+      <canvas></canvas>
+    <div class="song">
+      <div class="artist">Kavinsky</div>
+      <div class="name">Odd Look ft. The Weeknd</div>
     </div>
+    <div class="playarea">
+      <div class="prevSong"></div>
+      <div class="play"></div>
+      <div class="pause"></div>
+      <div class="nextSong"></div>
+    </div>
+    <div class="soundControl"></div>
+    <div class="time">00:00</div>
+  </div>
+
+<!-- MUSIC -->
   
 <figure class="logo">
   <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/58281/logo_copy_copy.svg">
