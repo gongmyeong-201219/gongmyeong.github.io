@@ -543,7 +543,7 @@ var Framer = {
             {
                 artist: "Kavinsky",
                 song: "Odd Look ft. The Weeknd",
-                url: "https://soundcloud.com/glnymwxutvov/sets/gongmyeong?si=b6f6eba4e9134f0880f0d1daeee122c5&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
+                url: "https://soundcloud.com/glnymwxutvov/sets/gongmyeong?si=c68c6fc0cca1420e9cff9310cd62fb2f&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
             }
         ],
 
