@@ -33,7 +33,8 @@ body {
   align-items: center;
   justify-content: center;
   background-color: #111;
-  font-family: "helvetica neue", helvetica, sans-serif, "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: "helvetica neue", helvetica, sans-serif, "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; 
+  
   overflow: hidden;
   height: 100vh;
   width: 100vw;
@@ -200,6 +201,7 @@ ul, li {
   line-height: 1.075;
   color: #fff;
   font-weight: 500;
+  @import url(http://fonts.googleapis.com/earlyaccess/cwtexhei.css);
 }
 .slider__text-line {
   overflow: hidden;
