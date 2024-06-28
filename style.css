@@ -100,7 +100,7 @@ ul, li {
 
 .nav--right li {
   display: block;
-  margin: 0 1rem;
+  margin: 0 -5rem;
   padding: 0;
 }
   
@@ -109,7 +109,15 @@ ul, li {
   align-items: center;
   height: 1rem;
 }
-.nav a {
+.nav--left li a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: calc(0.5rem + 0.35vw);
+  font-family: "helvetica neue", helvetica, sans-serif;
+}
+
+.nav--right li a {
   position: relative;
   display: flex;
   align-items: center;
