@@ -199,6 +199,7 @@ ul, li {
   transform-origin: top;
   line-height: 1.075;
   color: #fff;
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
   font-weight: 500;
 }
 .slider__text-line {
