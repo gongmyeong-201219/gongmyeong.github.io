@@ -288,6 +288,17 @@ ul, li {
     body {
         overflow: auto; /* 모바일에서는 스크롤이 가능하도록 설정 */
     }
+
+    .logo {
+      position: relative;
+      top: 0.7em;
+      left: auto;
+      transform: none;
+      padding: 0;
+      margin: 0;
+      z-index: 10;
+    }
+      
     .logo img {
         height: 3rem; /* 로고 크기 줄임 */
     }
