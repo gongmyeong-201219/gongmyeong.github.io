@@ -1,11 +1,31 @@
+/* The MIT License (MIT)
+
+Copyright (c) 2024 jesper landberg (https://codepen.io/ReGGae/pen/bmyYEj)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE. */
+
 html {
   font-size: 16px;
 }
 
 html, body {
   height: 100%;
-  margin: 0;
-  padding: 0;
 }
 
 body {
@@ -15,9 +35,11 @@ body {
   background-color: #111;
   font-family: "helvetica neue", helvetica, sans-serif;
   overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
-.gm-music iframe {
+.gm-music iframe{
   position: relative;
   z-index: 100;
   margin-bottom: 1142px;
@@ -34,6 +56,7 @@ a {
   left: 50%;
   transform: translateX(-50%);
   color: rgba(255, 255, 255, 0.5);
+  font-family: "font-2";
   font-size: calc(0.5rem + 0.35vw);
   z-index: 10;
 }
@@ -43,10 +66,12 @@ a {
   top: 0.7rem;
   left: 50%;
   transform: translateX(-50%);
+  padding: 0;
+  margin: 0;
   z-index: 10;
 }
-
 .logo img {
+  position: relative;
   height: 4rem;
   width: auto;
 }
@@ -62,36 +87,69 @@ ul, li {
   top: 2rem;
   z-index: 10;
 }
-
 .nav--left {
   left: 1rem;
 }
-
 .nav--right {
   right: 1rem;
 }
 
-.nav--left li, .nav--right li {
+.nav--left li {
   display: block;
+  margin: 0 1rem;
+  padding: 0;
 }
 
 .nav--right li {
+  display: block;
   margin: 0 -18rem;
+  padding: 0;
 }
-
-.nav--left ul, .nav--right ul {
+  
+.nav--left ul {
   display: flex;
   align-items: center;
+  height: 1rem;
 }
 
-.nav--left a, .nav--right a {
+.nav--right ul {
+  display: flex;
+  align-items: center;
+  height: 1rem;
+}
+.nav--left li a {
   position: relative;
   display: flex;
   align-items: center;
+/*   font-size: calc(0.5rem + 0.35vw);
+  font-family: "helvetica neue", helvetica, sans-serif; */
 }
 
-.nav--right a img {
+.nav--right li a {
+  position: relative;
+  display: ruby;
+/*   font-size: calc(0.5rem + 0.35vw);
+  font-family: "helvetica neue", helvetica, sans-serif; */
+}
+.nav--right li a img {
+  position: relative;
   width: 6%;
+}
+.nav--right li a img:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.35rem;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.25);
+  transition: transform 0.75s ease;
+  transform-origin: right;
+  transform: scaleX(0);
+}
+.nav a:hover span:before, .nav a.is-active span:before {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 .vert-text {
@@ -103,14 +161,25 @@ ul, li {
   align-items: center;
   z-index: 10;
 }
-
 .vert-text span {
+  display: block;
   color: #fff;
   text-transform: uppercase;
   line-height: 1.1;
   transform: rotate(-90deg) translateY(15rem);
   transform-origin: bottom left;
   font-size: 1.35rem;
+}
+
+.cart-total {
+  display: block;
+  height: 2rem;
+  width: 2rem;
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 2rem;
+  margin-left: 1rem;
 }
 
 .slider {
@@ -120,7 +189,6 @@ ul, li {
   right: 0;
   bottom: 0;
 }
-
 .slider__text {
   position: absolute;
   bottom: calc(2rem + 3vw);
@@ -133,11 +201,9 @@ ul, li {
   color: #fff;
   font-weight: 500;
 }
-
 .slider__text-line {
   overflow: hidden;
 }
-
 .slider__inner {
   position: absolute;
   left: 0;
@@ -145,7 +211,6 @@ ul, li {
   right: 0;
   bottom: 0;
 }
-
 .slider__nav {
   position: absolute;
   top: 50%;
@@ -153,33 +218,27 @@ ul, li {
   transform: translateY(-50%);
   z-index: 10;
 }
-
 .slider-bullet {
   display: flex;
   align-items: center;
-  position: relative;
-  cursor: pointer;
+  padding: 1rem 0;
 }
-
-.slider-bullet:not(:last-child) {
-  margin-bottom: 1.25rem;
-}
-
 .slider-bullet__text {
-  display: block;
-  font-size: 1rem;
-  text-transform: uppercase;
-  transform: rotate(90deg);
   color: #fff;
-  transform-origin: left;
-  margin-right: 0.5rem;
+  font-size: 0.65rem;
+  margin-right: 1rem;
 }
-
 .slider-bullet__line {
-  display: block;
-  width: 2.5rem;
+  background-color: #fff;
   height: 1px;
-  background-color: rgba(255, 255, 255, 0.5);
+  width: 1rem;
+}
+.slider canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .slide {
@@ -188,31 +247,70 @@ ul, li {
   top: 0;
   right: 0;
   bottom: 0;
+  overflow: hidden;
 }
-
 .slide__content {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  left: 45%;
+  top: 0;
+  right: 0;
+  bottom: 0;
 }
-
 .slide__img {
-  height: 100%;
-  width: 100%;
-  background-color: #000;
-  overflow: hidden;
+  position: relative;
+  width: 25vw;
+  height: 70vh;
+  padding: 0;
+  margin: 0;
+  min-width: 12.5rem;
+  transform-origin: top;
+}
+.slide__img:first-child {
+  top: -1.5rem;
+}
+.slide__img:last-child {
+  bottom: -1.5rem;
+}
+.slide__img img {
+  display: block;
   position: absolute;
   left: 0;
   top: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
-.slide__img img {
-  display: block;
-  height: 100%;
-  width: auto;
+@media (max-width: 768px) {
+    /* 모바일 화면에 맞는 스타일 추가 */
+    body {
+        overflow: auto; /* 모바일에서는 스크롤이 가능하도록 설정 */
+    }
+
+    .logo {
+      position: relative;
+      top: 0.7em;
+      left: auto;
+      transform: none;
+      padding: 0;
+      margin: 0;
+      z-index: 10;
+    }
+      
+    .logo img {
+        height: 3rem; /* 로고 크기 줄임 */
+    }
+    .nav {
+        top: 1rem; /* 네비게이션 위치 조정 */
+    }
+    .scroll {
+        bottom: 1rem; /* 스크롤 버튼 위치 조정 */
+    }
+    .slider__text {
+        font-size: 2rem; /* 슬라이더 텍스트 크기 조정 */
+    }
 }
