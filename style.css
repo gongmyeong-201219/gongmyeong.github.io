@@ -20,6 +20,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. */
 
+
+
 html {
   font-size: 16px;
 }
@@ -201,7 +203,6 @@ ul, li {
   line-height: 1.075;
   color: #fff;
   font-weight: 500;
-  @import url(http://fonts.googleapis.com/earlyaccess/cwtexhei.css);
 }
 .slider__text-line {
   overflow: hidden;
