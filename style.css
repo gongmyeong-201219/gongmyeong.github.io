@@ -125,8 +125,7 @@ ul, li {
 
 .nav--right li a {
   position: relative;
-  display: flex;
-  align-items: center;
+  display: ruby;
 /*   font-size: calc(0.5rem + 0.35vw);
   font-family: "helvetica neue", helvetica, sans-serif; */
 }
