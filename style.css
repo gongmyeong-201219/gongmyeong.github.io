@@ -292,7 +292,7 @@ ul, li {
 
     .logo {
       position: relative;
-      top: 0.7em;
+      top: 23.5em;
       left: auto;
       transform: none;
       padding: 0;
@@ -304,13 +304,23 @@ ul, li {
         height: 3rem; /* 로고 크기 줄임 */
     }
     .nav {
-        top: 2.2em; /* 네비게이션 위치 조정 */
+        top: 4.5em; /* 네비게이션 위치 조정 */
     }
 
     .nav--left{
       left: 1rem;
     }
-    
+
+    .nav--left ul{
+      display: flex;
+      align-items: center;
+      height: 0.8rem;
+    }
+
+    .nav--left ul li a span{
+      font-size: 12px;
+    }
+  
     .nav--right li{
       display: block;
       margin: 0 -19.5em;
