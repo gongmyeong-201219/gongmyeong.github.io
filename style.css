@@ -94,7 +94,7 @@ ul, li {
 
 .nav nav--left js-nav li {
   display: block;
-  margin: 0 -18rem;
+  margin: 0 1rem;
   padding: 0;
 }
 
@@ -111,7 +111,7 @@ ul, li {
 }
 
 .nav--right ul {
-  display: ruby;
+  display: flex;
   align-items: center;
   height: 1rem;
 }
