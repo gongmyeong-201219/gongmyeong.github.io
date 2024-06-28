@@ -326,7 +326,12 @@ ul, li {
       margin: 0 -19.5em;
       padding: 0;
     }
-      
+
+    .slide__img{
+      left: -8%;
+      min-width: 16.5rem;
+    }
+  
     .scroll {
         bottom: 1rem; /* 스크롤 버튼 위치 조정 */
     }
