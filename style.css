@@ -85,7 +85,7 @@ ul, li {
   top: 2rem;
   z-index: 10;
 }
-.nav--left js-nav {
+.nav--left {
   left: 1rem;
 }
 .nav--right {
