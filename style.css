@@ -113,21 +113,22 @@ ul, li {
   position: relative;
   display: flex;
   align-items: center;
-  font-size: calc(0.5rem + 0.35vw);
-  font-family: "helvetica neue", helvetica, sans-serif;
+/*   font-size: calc(0.5rem + 0.35vw);
+  font-family: "helvetica neue", helvetica, sans-serif; */
 }
 
 .nav--right li a {
   position: relative;
   display: flex;
   align-items: center;
-  font-size: calc(0.5rem + 0.35vw);
-  font-family: "helvetica neue", helvetica, sans-serif;
+/*   font-size: calc(0.5rem + 0.35vw);
+  font-family: "helvetica neue", helvetica, sans-serif; */
 }
-.nav a span {
+.nav--right li a img {
   position: relative;
+  width: 6%;
 }
-.nav a span:before {
+.nav--right li a img:before {
   content: "";
   position: absolute;
   left: 0;
