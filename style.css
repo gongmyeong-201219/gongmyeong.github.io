@@ -282,3 +282,23 @@ ul, li {
   -o-object-fit: cover;
      object-fit: cover;
 }
+
+@media (max-width: 768px) {
+    /* 모바일 화면에 맞는 스타일 추가 */
+    body {
+        overflow: auto; /* 모바일에서는 스크롤이 가능하도록 설정 */
+    }
+    .logo img {
+        height: 3rem; /* 로고 크기 줄임 */
+    }
+    .nav {
+        top: 1rem; /* 네비게이션 위치 조정 */
+    }
+    .scroll {
+        bottom: 1rem; /* 스크롤 버튼 위치 조정 */
+    }
+    .slider__text {
+        font-size: 2rem; /* 슬라이더 텍스트 크기 조정 */
+    }
+}
+
