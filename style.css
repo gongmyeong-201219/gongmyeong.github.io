@@ -307,6 +307,10 @@ ul, li {
         top: 2.2em; /* 네비게이션 위치 조정 */
     }
 
+    .nav--left{
+      left: 1rem;
+    }
+    
     .nav--right li{
       display: block;
       margin: 0 -19.5em;
