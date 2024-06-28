@@ -35,6 +35,8 @@ body {
   background-color: #111;
   font-family: "helvetica neue", helvetica, sans-serif;
   overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 .gm-music iframe{
