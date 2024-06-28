@@ -85,14 +85,14 @@ ul, li {
   top: 2rem;
   z-index: 10;
 }
-.nav--left js-nav {
+.nav nav--left js-nav {
   left: 1rem;
 }
 .nav--right {
   right: 1rem;
 }
 
-.nav--left js-nav li {
+.nav nav--left js-nav li {
   display: block;
   margin: 0 -18rem;
   padding: 0;
@@ -104,7 +104,7 @@ ul, li {
   padding: 0;
 }
   
-.nav--left js-nav ul {
+.nav nav--left js-nav ul {
   display: flex;
   align-items: center;
   height: 1rem;
@@ -115,7 +115,7 @@ ul, li {
   align-items: center;
   height: 1rem;
 }
-.nav--left js-nav li a {
+.nav nav--left js-nav li a {
   position: relative;
   display: flex;
   align-items: center;
