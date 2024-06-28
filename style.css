@@ -286,6 +286,7 @@ ul, li {
 @media (max-width: 768px) {
     /* 모바일 화면에 맞는 스타일 추가 */
     body {
+        position: fixed;
         overflow: auto; /* 모바일에서는 스크롤이 가능하도록 설정 */
     }
 
