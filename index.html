@@ -1,86 +1,151 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" >
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>共命之鳥</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="./style.css">
+  
+  <link href='https://fonts.googleapis.com/css?family=Roboto:100' rel='stylesheet' type='text/css'>
+<!--   The MIT License (MIT)
+
+  Copyright (c) 2024 jesper landberg (https://codepen.io/ReGGae/pen/bmyYEj)
+  
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+  
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+  
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE. -->
 </head>
 <body>
-  <nav class="nav nav--left">
-    <ul>
-      <li><a href="#"><span>Profile</span></a></li>
-      <li><a href="#"><span>Background</span></a></li>
-      <li><a href="#" class="is-active"><span>Collections</span></a></li>
-    </ul>
+<!-- partial:index.partial.html -->
+
+<!-- 왼쪽 메뉴 시작 -->
+<nav class="nav nav--left">
+  <ul>
+    <li>
+      <a href="#"><span>Profile</span></a>
+    </li>
+    <li>
+      <a href="#"><span>Background</span></a>
+    </li>
+    <li>
+      <a href="#" class="is-active"><span>Collections</span></a>
+    </li>
+  </ul>
+</nav>
+<!-- 왼쪽 메뉴 끝 -->
+
+<!-- 배경음악 시작 -->
+  <!-- <div class="gm-music">
+  <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay" mute="true" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1842927468&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/glnymwxutvov" title="공명" target="_blank" style="color: #cccccc; text-decoration: none;">공명</a> · <a href="https://soundcloud.com/glnymwxutvov/sets/gongmyeong" title="共命之鳥" target="_blank" style="color: #cccccc; text-decoration: none;">共命之鳥</a></div>
+  </div> -->
+<!-- 배경음악 끝 -->
+
+<!-- 공명지조 중앙 로고 시작 -->
+<figure class="logo">
+  <img src="https://i.ibb.co/MDyJqkK/GM-main-txt.png">
+</figure>
+<!-- 공명지조 중앙 로고 끝 -->
+
+<!-- 오른쪽 메뉴 시작 -->
+<nav class="nav nav--right">
+  <ul>
+    <li>
+      <a href="https://pushoong.com/ask/3691284897" target="_blank"><img src="https://i.ibb.co/gz41Z9P/pushoong-img.png"></a>
+    </li>
+    <li>
+     <a href="https://공명.lrl.kr" target="_blank"><img src="https://i.ibb.co/drPjrTv/evernote-img.png"></a>
+    </li>
+  </ul>
+</nav>
+<!-- 오른쪽 메뉴 끝 -->
+
+<!-- 첫번째 페이지 슬라이드 이미지 및 글자 시작 -->
+<div class="slider js-slider">
+  <div class="slider__inner js-slider__inner"></div>
+  
+  <div class="slide js-slide">
+    <div class="slide__content">
+       <figure class="slide__img js-slide__img">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/58281/photo2.jpg">
+      </figure>
+  </div>
+<!-- 첫번째 페이지 슬라이드 이미지 및 글자 끝 -->
+    
+    <div class="slider__text js-slider__text">
+      <div class="slider__text-line js-slider__text-line"><div>我问上帝。</div></div>
+      <div class="slider__text-line js-slider__text-line"><div>无抵抗是罪吗？</div></div>
+<!--       <div class="slider__text-line js-slider__text-line"><div>아 피곤해요 아</div></div>
+      <div class="slider__text-line js-slider__text-line"><div>으아아아아아아아</div></div> -->
+    </div>
+    
+  </div>
+  
+  <div class="slide js-slide">
+    <div class="slide__content">
+      <figure class="slide__img js-slide__img">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/58281/photo3.jpg">
+      </figure>
+       <figure class="slide__img js-slide__img">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/58281/photo4.jpg">
+      </figure>
+    </div>
+  </div>
+  
+  <div class="slide js-slide">
+    <div class="slide__content">
+      <figure class="slide__img js-slide__img">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/58281/photo5.jpg">
+      </figure>
+       <figure class="slide__img js-slide__img">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/58281/photo6.jpg">
+      </figure>
+    </div>
+  </div>
+  
+  <nav class="slider__nav js-slider__nav">
+    <div class="slider-bullet js-slider-bullet">
+      <span class="slider-bullet__text js-slider-bullet__text">01</span>
+      <span class="slider-bullet__line js-slider-bullet__line"></span>
+    </div>
+     <div class="slider-bullet js-slider-bullet">
+      <span class="slider-bullet__text js-slider-bullet__text">02</span>
+      <span class="slider-bullet__line js-slider-bullet__line"></span>
+    </div>
+     <div class="slider-bullet js-slider-bullet">
+      <span class="slider-bullet__text js-slider-bullet__text">03</span>
+      <span class="slider-bullet__line js-slider-bullet__line"></span>
+    </div>
   </nav>
+  
+  <div class="scroll js-scroll">Scroll</div>
+  
+</div>
 
-  <!-- Background Music -->
-  <!-- 
-  <div class="gm-music">
-    <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay" mute="true" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1842927468&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
-  </div>
-  -->
-
-  <figure class="logo">
-    <img src="https://i.ibb.co/MDyJqkK/GM-main-txt.png" alt="Gōmyō no tori logo">
-  </figure>
-
-  <nav class="nav nav--right">
-    <ul>
-      <li><a href="https://pushoong.com/ask/3691284897" target="_blank"><img src="https://i.ibb.co/gz41Z9P/pushoong-img.png" alt="Pushoong"></a></li>
-      <li><a href="https://공명.lrl.kr" target="_blank"><img src="https://i.ibb.co/drPjrTv/evernote-img.png" alt="Evernote"></a></li>
-    </ul>
-  </nav>
-
-  <div class="slider js-slider">
-    <div class="slider__inner js-slider__inner"></div>
-    <div class="slide js-slide">
-      <div class="slide__content">
-        <figure class="slide__img js-slide__img"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/58281/photo2.jpg" alt="Slide Image 1"></figure>
-      </div>
-      <div class="slider__text js-slider__text">
-        <div class="slider__text-line js-slider__text-line"><div>我问上帝。</div></div>
-        <div class="slider__text-line js-slider__text-line"><div>无抵抗是罪吗？</div></div>
-      </div>
-    </div>
-    <div class="slide js-slide">
-      <div class="slide__content">
-        <figure class="slide__img js-slide__img"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/58281/photo3.jpg" alt="Slide Image 2"></figure>
-        <figure class="slide__img js-slide__img"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/58281/photo4.jpg" alt="Slide Image 3"></figure>
-      </div>
-    </div>
-    <div class="slide js-slide">
-      <div class="slide__content">
-        <figure class="slide__img js-slide__img"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/58281/photo5.jpg" alt="Slide Image 4"></figure>
-        <figure class="slide__img js-slide__img"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/58281/photo6.jpg" alt="Slide Image 5"></figure>
-      </div>
-    </div>
-    <nav class="slider__nav js-slider__nav">
-      <div class="slider-bullet js-slider-bullet">
-        <span class="slider-bullet__text js-slider-bullet__text">01</span>
-        <span class="slider-bullet__line js-slider-bullet__line"></span>
-      </div>
-      <div class="slider-bullet js-slider-bullet">
-        <span class="slider-bullet__text js-slider-bullet__text">02</span>
-        <span class="slider-bullet__line js-slider-bullet__line"></span>
-      </div>
-      <div class="slider-bullet js-slider-bullet">
-        <span class="slider-bullet__text js-slider-bullet__text">03</span>
-        <span class="slider-bullet__line js-slider-bullet__line"></span>
-      </div>
-    </nav>
-    <div class="scroll js-scroll">Scroll</div>
-  </div>
-
-  <div class="vert-text">
-    <span>Wings+Horns<br>X Kyoto Black</span>
-  </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/99/three.min.js"></script>
-  <script src="script.js"></script>
+<div class="vert-text">
+  <span>
+    Wings+Horns<br>
+    X Kyoto Black
+  </span>
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/99/three.min.js'></script><script  src="./script.js"></script>
+  <script src="./script.js"></script>
 </body>
 </html>
