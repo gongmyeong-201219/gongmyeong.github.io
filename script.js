@@ -351,10 +351,19 @@ class Slider {
 
   listeners() {
     window.addEventListener('wheel', this.nextSlide, { passive: true });
-    // Add touch event listeners
+    // Add touch event listeners to the entire slider
     this.el.addEventListener('touchstart', this.handleTouchStart, { passive: true });
     this.el.addEventListener('touchmove', this.handleTouchMove, { passive: true });
     this.el.addEventListener('touchend', this.handleTouchEnd, { passive: true });
+    // Add touch event listeners to the images
+    this.slides.forEach(slide => {
+      const images = slide.querySelectorAll('.js-slide__img');
+      images.forEach(img => {
+        img.addEventListener('touchstart', this.handleTouchStart, { passive: true });
+        img.addEventListener('touchmove', this.handleTouchMove, { passive: true });
+        img.addEventListener('touchend', this.handleTouchEnd, { passive: true });
+      });
+    });
   }
 
   render() {
