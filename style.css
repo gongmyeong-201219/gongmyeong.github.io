@@ -303,12 +303,16 @@ ul, li {
     .logo img {
         height: 3rem; /* 로고 크기 줄임 */
     }
-    .nav {
+    .nav--left .nav--right {
         top: 4.5em; /* 네비게이션 위치 조정 */
     }
 
     .nav--left{
       left: 1rem;
+    }
+
+    .nav-right{
+      right: -18rem;
     }
 
     .nav--left ul{
