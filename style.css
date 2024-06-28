@@ -104,7 +104,13 @@ ul, li {
   padding: 0;
 }
   
-.nav ul {
+.nav--left ul {
+  display: flex;
+  align-items: center;
+  height: 1rem;
+}
+
+.nav--right ul {
   display: flex;
   align-items: center;
   height: 1rem;
