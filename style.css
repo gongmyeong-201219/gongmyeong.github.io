@@ -32,6 +32,12 @@ body {
   width: 100vw;
 }
 
+.gm-music{
+  position: absolute;
+  z-index: 100;
+  margin-bottom: 1142px;
+}
+
 .gm-music iframe{
   position: relative;
   z-index: 100;
