@@ -21,9 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. */
 
 html, body, main {
-	overflow: auto;
 	height : 100vh;
-	-webkit-overflow-scrolling: touch;
 }
 
 body {
