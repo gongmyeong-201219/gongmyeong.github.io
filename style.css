@@ -293,7 +293,7 @@ ul, li {
 }
 
 @media screen and (max-width: 767px) {
-  .logo{position: relative; top: -19.2rem; left: -22%; padding: 0; margin: 0; z-index: 10;}
+  .logo{position: relative; top: -18.5rem; left: -22%; padding: 0; margin: 0; z-index: 10;}
   .logo img{position: relative; height: 3rem; width: auto;}
   .nav--left{left: 7rem; top: 1.0rem;}
   .nav--right{right:1rem; top: 38.5rem;}\
