@@ -296,7 +296,7 @@ ul, li {
   .logo{position: relative; top: -19.2rem; left: -22%; padding: 0; margin: 0; z-index: 10;}
   .logo img{position: relative; height: 3rem; width: auto;}
   .nav--left{left: 7rem; top: 1.0rem;}
-  .nav--right{right:1rem; top: 48.7rem;}
+  .nav--right{right:1rem; top: 38.5rem;}
   .nav--right li{diplay: block; margin: 0 -19.5rem; padding: 0;}
   .nav--right li a img{position: relative; width: 4%;}
   .slider__text {position: absolute; bottom: calc(2rem + 117vw); left: calc(2rem + 3vw); z-index: 10; font-size: calc(1rem + 4vw); text-transform: uppercase; transform-origin: top; line-height: 1.075; color: #fff;
