@@ -83,14 +83,14 @@ class Slider {
     this.textures = null;
 
     // Initialize touch variables
-    this.touchStartX = 0;
-    this.touchEndX = 0;
+    this.touchStartY = 0;
+    this.touchEndY = 0;
 
     this.init();
   }
 
   bindAll() {
-    ['render', 'nextSlide', 'handleTouchStart', 'handleTouchMove', 'handleTouchEnd'].
+    ['render', 'nextSlide', 'prevSlide', 'handleTouchStart', 'handleTouchMove', 'handleTouchEnd'].
     forEach(fn => this[fn] = this[fn].bind(this));
   }
 
@@ -312,7 +312,7 @@ class Slider {
   }
 
   prevSlide() {
-
+    // Add logic for previous slide if needed
   }
 
   nextSlide() {
@@ -332,26 +332,25 @@ class Slider {
   }
 
   handleTouchStart(event) {
-    this.touchStartX = event.changedTouches[0].screenX;
+    this.touchStartY = event.changedTouches[0].screenY;
   }
 
   handleTouchMove(event) {
-    this.touchEndX = event.changedTouches[0].screenX;
+    this.touchEndY = event.changedTouches[0].screenY;
   }
 
   handleTouchEnd() {
-    if (this.touchEndX < this.touchStartX) {
+    const swipeThreshold = 50; // Adjust this value to set the swipe sensitivity
+    if (this.touchEndY < this.touchStartY - swipeThreshold) {
       this.nextSlide();
     }
-    // Optionally, you can add a previous slide functionality
-    // if (this.touchEndX > this.touchStartX) {
-    //   this.prevSlide();
-    // }
+    if (this.touchEndY > this.touchStartY + swipeThreshold) {
+      this.prevSlide();
+    }
   }
 
   listeners() {
     window.addEventListener('wheel', this.nextSlide, { passive: true });
-    // Add touch event listeners to the entire slider
     this.el.addEventListener('touchstart', this.handleTouchStart, { passive: true });
     this.el.addEventListener('touchmove', this.handleTouchMove, { passive: true });
     this.el.addEventListener('touchend', this.handleTouchEnd, { passive: true });
