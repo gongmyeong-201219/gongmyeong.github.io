@@ -2,15 +2,15 @@ class Slider {
   constructor() {
     this.bindAll();
 
-    this.vert = 
+    this.vert = `
     varying vec2 vUv;
     void main() {
       vUv = uv;
       gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
     }
-    ;
+    `;
 
-    this.frag = 
+    this.frag = `
     varying vec2 vUv;
 
     uniform sampler2D texture1;
@@ -49,7 +49,7 @@ class Slider {
       
       gl_FragColor = mix(_texture1, _texture2, dispPower);
     }
-    ;
+    `;
 
     this.el = document.querySelector('.js-slider');
     this.inner = this.el.querySelector('.js-slider__inner');
