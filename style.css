@@ -311,7 +311,7 @@ ul, li {
 @media screen and (max-width: 900px) {
   .logo{position: relative; top: -46%; left: -22%; padding: 0; margin: 0; z-index: 10;}
   .logo img{position: relative; height: 3rem; width: auto;}
-  .nav--left{left: 8rem; top: 1.0rem;}
+  .nav--left{left: 8rem; top: 1.0rem; width: 100%;}
   .nav--right{right:1rem; top: 38.3rem;}
   .nav--right ul{display: flex; align-items: center; height: 2rem;}
   .nav--right li{diplay: block; margin: 0 -19.5rem; padding: 0;}
