@@ -82,15 +82,11 @@ class Slider {
 
     this.textures = null;
 
-    // Initialize touch variables
-    this.touchStartY = 0;
-    this.touchEndY = 0;
-
     this.init();
   }
 
   bindAll() {
-    ['render', 'nextSlide', 'prevSlide', 'handleTouchStart', 'handleTouchMove', 'handleTouchEnd'].
+    ['render', 'nextSlide'].
     forEach(fn => this[fn] = this[fn].bind(this));
   }
 
@@ -226,12 +222,22 @@ class Slider {
     const currentBulletLine = currentBullet.querySelectorAll('.js-slider-bullet__line');
     const nextBulletLine = nextBullet.querySelectorAll('.js-slider-bullet__line');
 
-    const tl = new TimelineMax();
+    const tl = new TimelineMax({ paused: true });
+
+    if (this.state.initial) {
+      TweenMax.to('.js-scroll', 1.5, {
+        yPercent: 100,
+        alpha: 0,
+        ease: Power4.easeInOut });
+
+
+      this.state.initial = false;
+    }
 
     tl.
     staggerFromTo(currentImages, 1.5, {
       yPercent: 0,
-      scaleY: 1 },
+      scale: 1 },
     {
       yPercent: -185,
       scaleY: 1.5,
@@ -249,7 +255,7 @@ class Slider {
       ease: Expo.easeInOut },
     0);
 
-    if (this.state.text) {
+    if (currentText) {
       tl.
       fromTo(currentText, 2, {
         yPercent: 0 },
@@ -302,7 +308,7 @@ class Slider {
   }
 
   prevSlide() {
-    // Add logic for previous slide if needed
+
   }
 
   nextSlide() {
@@ -321,30 +327,8 @@ class Slider {
     this.mat.uniforms.texture2.value = this.textures[this.data.next];
   }
 
-  handleTouchStart(event) {
-    this.touchStartY = event.changedTouches[0].screenY;
-  }
-
-  handleTouchMove(event) {
-    event.preventDefault(); // Prevent default touch move behavior to disable scrolling
-    this.touchEndY = event.changedTouches[0].screenY;
-  }
-
-  handleTouchEnd() {
-    const swipeThreshold = 50; // Adjust this value to set the swipe sensitivity
-    if (this.touchEndY < this.touchStartY - swipeThreshold) {
-      this.nextSlide();
-    }
-    if (this.touchEndY > this.touchStartY + swipeThreshold) {
-      this.prevSlide();
-    }
-  }
-
   listeners() {
     window.addEventListener('wheel', this.nextSlide, { passive: true });
-    document.addEventListener('touchstart', this.handleTouchStart, { passive: true });
-    document.addEventListener('touchmove', this.handleTouchMove, { passive: false });
-    document.addEventListener('touchend', this.handleTouchEnd, { passive: true });
   }
 
   render() {
@@ -359,8 +343,8 @@ class Slider {
     this.setStyles();
     this.render();
     this.listeners();
-  }
-}
+  }}
+
 
 // Toggle active link
 const links = document.querySelectorAll('.js-nav a');
