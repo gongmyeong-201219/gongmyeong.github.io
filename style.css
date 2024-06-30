@@ -308,7 +308,7 @@ ul, li {
   .slide__img {position: relative; width: 25vw; height: 51vh; padding: 0; margin: 0; min-width: 16.5rem; transform-origin: top;}
 } */
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
   .logo{position: relative; top: -46%; left: -22%; padding: 0; margin: 0; z-index: 10;}
   .logo img{position: relative; height: 3rem; width: auto;}
   .nav--left{left: 31%; top: 2.5%; width: 100%;}
