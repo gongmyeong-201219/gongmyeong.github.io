@@ -305,7 +305,7 @@ ul, li {
 } */
 
 @media screen and (max-width: 800px) {
-  .logo{position: relative; top: -46%; left: -22%; padding: 0; margin: 0; z-index: 10;}
+  .logo{position: relative; top: 0.5%; left: 54.5%; padding: 0; margin: 0; z-index: 10;}
   .logo img{position: relative; height: 3rem; width: auto;}
   .nav--left{left: 31%; top: 2.5%; width: 100%;}
   .nav--left li{display: block; margin: 0 2%; padding: 0;}
