@@ -314,7 +314,7 @@ ul, li {
   .nav--left{left: 35%; top: 2.5%; width: 100%;}
   .nav--left li{display: block; margin: 0 2%; padding: 0;}
   .nav--right{right:8% top: 92.3%;}
-  .nav--right ul{display: flex; align-items: center; height: 2rem;}
+  .nav--right ul{display: flex; align-items: center; height: 2%;}
   .nav--right li{diplay: block; margin: 0 2%; padding: 0;}
   .nav--right li a img{position: relative; width: 25%;}
   .slider__text {position: absolute; bottom: calc(2rem + 85vw); left: calc(2rem + 3vw); z-index: 10; font-size: calc(1rem + 4vw); text-transform: uppercase; transform-origin: top; line-height: 1.075; color: #fff;
