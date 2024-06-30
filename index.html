@@ -82,11 +82,15 @@ class Slider {
 
     this.textures = null;
 
+    // Initialize touch variables
+    this.touchStartY = 0;
+    this.touchEndY = 0;
+
     this.init();
   }
 
   bindAll() {
-    ['render', 'nextSlide'].
+    ['render', 'nextSlide', 'prevSlide', 'handleTouchStart', 'handleTouchMove', 'handleTouchEnd'].
     forEach(fn => this[fn] = this[fn].bind(this));
   }
 
@@ -308,7 +312,7 @@ class Slider {
   }
 
   prevSlide() {
-
+    // Add logic for previous slide if needed
   }
 
   nextSlide() {
@@ -327,8 +331,29 @@ class Slider {
     this.mat.uniforms.texture2.value = this.textures[this.data.next];
   }
 
+  handleTouchStart(event) {
+    this.touchStartY = event.changedTouches[0].screenY;
+  }
+
+  handleTouchMove(event) {
+    this.touchEndY = event.changedTouches[0].screenY;
+  }
+
+  handleTouchEnd() {
+    const swipeThreshold = 50; // Adjust this value to set the swipe sensitivity
+    if (this.touchEndY < this.touchStartY - swipeThreshold) {
+      this.nextSlide();
+    }
+    if (this.touchEndY > this.touchStartY + swipeThreshold) {
+      this.prevSlide();
+    }
+  }
+
   listeners() {
     window.addEventListener('wheel', this.nextSlide, { passive: true });
+    this.el.addEventListener('touchstart', this.handleTouchStart, { passive: true });
+    this.el.addEventListener('touchmove', this.handleTouchMove, { passive: true });
+    this.el.addEventListener('touchend', this.handleTouchEnd, { passive: true });
   }
 
   render() {
@@ -343,8 +368,8 @@ class Slider {
     this.setStyles();
     this.render();
     this.listeners();
-  }}
-
+  }
+}
 
 // Toggle active link
 const links = document.querySelectorAll('.js-nav a');
