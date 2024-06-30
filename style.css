@@ -292,7 +292,23 @@ ul, li {
      object-fit: cover;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 767px) {
+  .logo{position: relative; top: -19.2rem; left: -22%; padding: 0; margin: 0; z-index: 10;}
+  .logo img{position: relative; height: 3rem; width: auto;}
+  .nav--left{left: 7rem; top: 1.0rem;}
+  .nav--right{right:1rem; top: 38.3rem;}
+  .nav--right ul{display: flex; align-items: center; height: 2rem;}
+  .nav--right li{diplay: block; margin: 0 -19.5rem; padding: 0;}
+  .nav--right li a img{position: relative; width: 4%;}
+  .slider__text {position: absolute; bottom: calc(2rem + 85vw); left: calc(2rem + 3vw); z-index: 10; font-size: calc(1rem + 4vw); text-transform: uppercase; transform-origin: top; line-height: 1.075; color: #fff;
+  font-weight: 500; font-family: "Noto Serif SC", serif; font-optical-sizing: auto; font-style: normal;}
+  .vert-text{position: absolute; bottom: 5rem; right: 1.9rem; width: 15rem; display: flex; align-items: center; z-index: 10;}
+  .slide{position: fixed; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden;}
+  .slide__content {display: flex; align-items: center; justify-content: center; position: absolute; left: 45%; top: 0; right: 0; bottom: 0;}
+  .slide__img {position: relative; width: 25vw; height: 51vh; padding: 0; margin: 0; min-width: 16.5rem; transform-origin: top;}
+}
+
+@media screen and (max-width: 900px) {
   .logo{position: relative; top: -19.2rem; left: -22%; padding: 0; margin: 0; z-index: 10;}
   .logo img{position: relative; height: 3rem; width: auto;}
   .nav--left{left: 7rem; top: 1.0rem;}
