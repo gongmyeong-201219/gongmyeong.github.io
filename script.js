@@ -326,6 +326,7 @@ class Slider {
   }
 
   handleTouchMove(event) {
+    event.preventDefault(); // Prevent default touch move behavior to disable scrolling
     this.touchEndY = event.changedTouches[0].screenY;
   }
 
@@ -342,7 +343,7 @@ class Slider {
   listeners() {
     window.addEventListener('wheel', this.nextSlide, { passive: true });
     this.el.addEventListener('touchstart', this.handleTouchStart, { passive: true });
-    this.el.addEventListener('touchmove', this.handleTouchMove, { passive: true });
+    this.el.addEventListener('touchmove', this.handleTouchMove, { passive: false });
     this.el.addEventListener('touchend', this.handleTouchEnd, { passive: true });
   }
 
