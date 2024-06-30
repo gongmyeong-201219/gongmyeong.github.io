@@ -289,3 +289,10 @@ ul, li {
   -o-object-fit: cover;
      object-fit: cover;
 }
+
+@media (max-width: 768px){
+  .logo{position: relative; top: 0.1rem; left: 15%; transform: translateX(-50%); padding: 0; margin: 0; z-index: 10;}
+  .logo img{position: relative; height: 3rem; width: auto;}
+  .nav--left{left: 7rem; top: 1.0rem;}
+}
+
