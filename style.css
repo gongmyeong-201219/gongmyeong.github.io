@@ -203,6 +203,10 @@ ul, li {
   line-height: 1.075;
   color: #fff;
   font-weight: 500;
+  font-family: "Noto Serif SC", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
 }
 .slider__text-line {
   overflow: hidden;
