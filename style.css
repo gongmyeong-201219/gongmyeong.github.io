@@ -313,7 +313,7 @@ ul, li {
   .logo img{position: relative; height: 3rem; width: auto;}
   .nav--left{left: 35%; top: 2.5%; width: 100%;}
   .nav--left li{display: block; margin: 0 2%; padding: 0;}
-  .nav--right{display: inline-block; position: absolute; width: 100vw;}
+  .nav--right{display: none;}
   .nav--right ul{display: inline-block; float: right; height: 2%; margin-top: 145%;}
   .nav--right li{margin: 0 -67.5% 3% 16%; padding: 0;}
   .nav--right li a img{position: relative; width: 100%;}
