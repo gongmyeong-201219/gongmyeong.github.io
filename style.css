@@ -313,10 +313,10 @@ ul, li {
   .logo img{position: relative; height: 3rem; width: auto;}
   .nav--left{left: 35%; top: 2.5%; width: 100%;}
   .nav--left li{display: block; margin: 0 2%; padding: 0;}
-  .nav--right{display: none;}
-  .nav--right ul{display: inline-block; float: right; height: 2%; margin-top: 145%;}
-  .nav--right li{margin: 0 -67.5% 3% 16%; padding: 0;}
-  .nav--right li a img{position: relative; width: 100%;}
+  .nav--right{display: inline-block; position: absolute; width: 100vw; right: auto; top: auto;}
+  .nav--right ul{display: inline-block; float: right; height: 2%; margin-top: 142%;}
+  .nav--right li{margin: 0 -60.5% 3% 16%; padding: 0;}
+  .nav--right li a img{position: relative; width: 6%;}
   .slider__text {position: absolute; bottom: calc(2rem + 85vw); left: calc(2rem + 3vw); z-index: 10; font-size: calc(1rem + 4vw); text-transform: uppercase; transform-origin: top; line-height: 1.075; color: #fff;
   font-weight: 500; font-family: "Noto Serif SC", serif; font-optical-sizing: auto; font-style: normal;}
   .vert-text{position: absolute; bottom: 5rem; right: 1.9rem; width: 15rem; display: flex; align-items: center; z-index: 10;}
