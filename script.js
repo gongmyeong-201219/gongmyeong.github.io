@@ -73,20 +73,20 @@ class Slider {
       total: this.images.length - 1,
       delta: 0 };
 
-
     this.state = {
       animating: false,
       text: false,
       initial: true };
 
-
     this.textures = null;
+    this.touchStartX = 0;
+    this.touchEndX = 0;
 
     this.init();
   }
 
   bindAll() {
-    ['render', 'nextSlide'].
+    ['render', 'nextSlide', 'handleTouchStart', 'handleTouchMove', 'handleTouchEnd'].
     forEach(fn => this[fn] = this[fn].bind(this));
   }
 
@@ -307,10 +307,6 @@ class Slider {
     tl.play();
   }
 
-  prevSlide() {
-
-  }
-
   nextSlide() {
     if (this.state.animating) return;
 
@@ -329,6 +325,23 @@ class Slider {
 
   listeners() {
     window.addEventListener('wheel', this.nextSlide, { passive: true });
+    window.addEventListener('touchstart', this.handleTouchStart, { passive: true });
+    window.addEventListener('touchmove', this.handleTouchMove, { passive: true });
+    window.addEventListener('touchend', this.handleTouchEnd, { passive: true });
+  }
+
+  handleTouchStart(event) {
+    this.touchStartX = event.changedTouches[0].screenX;
+  }
+
+  handleTouchMove(event) {
+    this.touchEndX = event.changedTouches[0].screenX;
+  }
+
+  handleTouchEnd() {
+    if (this.touchStartX - this.touchEndX > 50) {
+      this.nextSlide();
+    }
   }
 
   render() {
@@ -343,8 +356,8 @@ class Slider {
     this.setStyles();
     this.render();
     this.listeners();
-  }}
-
+  }
+}
 
 // Toggle active link
 const links = document.querySelectorAll('.js-nav a');
