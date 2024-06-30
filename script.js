@@ -1,38 +1,16 @@
-// The MIT License (MIT)
-
-// Copyright (c) 2024 jesper landberg (https://codepen.io/ReGGae/pen/bmyYEj)
-
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-
 class Slider {
   constructor() {
     this.bindAll();
 
-    this.vert = 
+    this.vert = `
     varying vec2 vUv;
     void main() {
       vUv = uv;
       gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
     }
-    ;
+    `;
 
-    this.frag = 
+    this.frag = `
     varying vec2 vUv;
 
     uniform sampler2D texture1;
@@ -71,7 +49,7 @@ class Slider {
       
       gl_FragColor = mix(_texture1, _texture2, dispPower);
     }
-    ;
+    `;
 
     this.el = document.querySelector('.js-slider');
     this.inner = this.el.querySelector('.js-slider__inner');
@@ -104,11 +82,15 @@ class Slider {
 
     this.textures = null;
 
+    // Initialize touch variables
+    this.touchStartY = 0;
+    this.touchEndY = 0;
+
     this.init();
   }
 
   bindAll() {
-    ['render', 'nextSlide'].
+    ['render', 'nextSlide', 'prevSlide', 'handleTouchStart', 'handleTouchMove', 'handleTouchEnd'].
     forEach(fn => this[fn] = this[fn].bind(this));
   }
 
@@ -244,22 +226,12 @@ class Slider {
     const currentBulletLine = currentBullet.querySelectorAll('.js-slider-bullet__line');
     const nextBulletLine = nextBullet.querySelectorAll('.js-slider-bullet__line');
 
-    const tl = new TimelineMax({ paused: true });
-
-    if (this.state.initial) {
-      TweenMax.to('.js-scroll', 1.5, {
-        yPercent: 100,
-        alpha: 0,
-        ease: Power4.easeInOut });
-
-
-      this.state.initial = false;
-    }
+    const tl = new TimelineMax();
 
     tl.
     staggerFromTo(currentImages, 1.5, {
       yPercent: 0,
-      scale: 1 },
+      scaleY: 1 },
     {
       yPercent: -185,
       scaleY: 1.5,
@@ -277,7 +249,7 @@ class Slider {
       ease: Expo.easeInOut },
     0);
 
-    if (currentText) {
+    if (this.state.text) {
       tl.
       fromTo(currentText, 2, {
         yPercent: 0 },
@@ -330,7 +302,7 @@ class Slider {
   }
 
   prevSlide() {
-
+    // Add logic for previous slide if needed
   }
 
   nextSlide() {
@@ -349,8 +321,29 @@ class Slider {
     this.mat.uniforms.texture2.value = this.textures[this.data.next];
   }
 
+  handleTouchStart(event) {
+    this.touchStartY = event.changedTouches[0].screenY;
+  }
+
+  handleTouchMove(event) {
+    this.touchEndY = event.changedTouches[0].screenY;
+  }
+
+  handleTouchEnd() {
+    const swipeThreshold = 50; // Adjust this value to set the swipe sensitivity
+    if (this.touchEndY < this.touchStartY - swipeThreshold) {
+      this.nextSlide();
+    }
+    if (this.touchEndY > this.touchStartY + swipeThreshold) {
+      this.prevSlide();
+    }
+  }
+
   listeners() {
     window.addEventListener('wheel', this.nextSlide, { passive: true });
+    this.el.addEventListener('touchstart', this.handleTouchStart, { passive: true });
+    this.el.addEventListener('touchmove', this.handleTouchMove, { passive: true });
+    this.el.addEventListener('touchend', this.handleTouchEnd, { passive: true });
   }
 
   render() {
@@ -365,8 +358,8 @@ class Slider {
     this.setStyles();
     this.render();
     this.listeners();
-  }}
-
+  }
+}
 
 // Toggle active link
 const links = document.querySelectorAll('.js-nav a');
