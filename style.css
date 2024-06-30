@@ -314,9 +314,9 @@ ul, li {
   .nav--left{left: 35%; top: 2.5%; width: 100%;}
   .nav--left li{display: block; margin: 0 2%; padding: 0;}
   .nav--right{display: inline-flex; float: right; flex-direction: row; justify-content: flex-start; right:8% top: 92.3%;}
-  .nav--right ul{display: flex; align-items: center; height: 2%;}
-  .nav--right li{diplay: block; margin: 0 2%; padding: 0;}
-  .nav--right li a img{position: relative; width: 18%;}
+  .nav--right ul{display: inline-flex; float: right; margin-left: 77%; align-items: center; height: 2%;}
+  .nav--right li{margin: 7% 9%; padding: 0; width: calc(57% / 2);}
+  .nav--right li a img{position: relative; width: 100%;}
   .slider__text {position: absolute; bottom: calc(2rem + 85vw); left: calc(2rem + 3vw); z-index: 10; font-size: calc(1rem + 4vw); text-transform: uppercase; transform-origin: top; line-height: 1.075; color: #fff;
   font-weight: 500; font-family: "Noto Serif SC", serif; font-optical-sizing: auto; font-style: normal;}
   .vert-text{position: absolute; bottom: 5rem; right: 1.9rem; width: 15rem; display: flex; align-items: center; z-index: 10;}
