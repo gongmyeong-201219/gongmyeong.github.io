@@ -85,7 +85,6 @@ class Slider {
     // Initialize touch variables
     this.touchStartX = 0;
     this.touchEndX = 0;
-    this.minSwipeDistance = 50; // Minimum distance for swipe to be recognized
 
     this.init();
   }
@@ -313,7 +312,7 @@ class Slider {
   }
 
   prevSlide() {
-    // Implement prevSlide similar to nextSlide if needed
+
   }
 
   nextSlide() {
@@ -340,35 +339,22 @@ class Slider {
     this.touchEndX = event.changedTouches[0].screenX;
   }
 
-  handleTouchEnd(event) {
-    event.preventDefault();
-    const swipeDistance = this.touchEndX - this.touchStartX;
-    if (Math.abs(swipeDistance) > this.minSwipeDistance) {
-      if (swipeDistance < 0) {
-        this.nextSlide();
-      }
-      // Uncomment below if you implement prevSlide
-      // else {
-      //   this.prevSlide();
-      // }
+  handleTouchEnd() {
+    if (this.touchEndX < this.touchStartX) {
+      this.nextSlide();
     }
+    // Optionally, you can add a previous slide functionality
+    // if (this.touchEndX > this.touchStartX) {
+    //   this.prevSlide();
+    // }
   }
 
   listeners() {
     window.addEventListener('wheel', this.nextSlide, { passive: true });
-    // Add touch event listeners to the entire slider
+    // Add touch event listeners
     this.el.addEventListener('touchstart', this.handleTouchStart, { passive: true });
     this.el.addEventListener('touchmove', this.handleTouchMove, { passive: true });
-    this.el.addEventListener('touchend', this.handleTouchEnd, { passive: false });
-    // Add touch event listeners to the images
-    this.slides.forEach(slide => {
-      const images = slide.querySelectorAll('.js-slide__img');
-      images.forEach(img => {
-        img.addEventListener('touchstart', this.handleTouchStart, { passive: true });
-        img.addEventListener('touchmove', this.handleTouchMove, { passive: true });
-        img.addEventListener('touchend', this.handleTouchEnd, { passive: false });
-      });
-    });
+    this.el.addEventListener('touchend', this.handleTouchEnd, { passive: true });
   }
 
   render() {
