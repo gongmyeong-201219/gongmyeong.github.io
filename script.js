@@ -86,7 +86,7 @@ class Slider {
   }
 
   bindAll() {
-    ['render', 'nextSlide', 'touchStart', 'touchMove', 'touchEnd'].
+    ['render', 'nextSlide', 'prevSlide', 'touchStart', 'touchMove', 'touchEnd'].
     forEach(fn => this[fn] = this[fn].bind(this));
   }
 
