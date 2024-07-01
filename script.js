@@ -62,25 +62,23 @@ class Slider {
     this.camera = null;
 
     this.images = [
-      'https://s3-us-west-2.amazonaws.com/s.cdpn.io/58281/bg1.jpg',
-      'https://s3-us-west-2.amazonaws.com/s.cdpn.io/58281/bg2.jpg',
-      'https://s3-us-west-2.amazonaws.com/s.cdpn.io/58281/bg3.jpg'
-    ];
+    'https://s3-us-west-2.amazonaws.com/s.cdpn.io/58281/bg1.jpg',
+    'https://s3-us-west-2.amazonaws.com/s.cdpn.io/58281/bg2.jpg',
+    'https://s3-us-west-2.amazonaws.com/s.cdpn.io/58281/bg3.jpg'];
+
 
     this.data = {
       current: 0,
       next: 1,
       total: this.images.length - 1,
-      delta: 0
-    };
+      delta: 0 };
+
 
     this.state = {
       animating: false,
       text: false,
-      initial: true,
-      touchStartX: 0,
-      touchEndX: 0
-    };
+      initial: true };
+
 
     this.textures = null;
 
@@ -88,34 +86,42 @@ class Slider {
   }
 
   bindAll() {
-    ['render', 'nextSlide', 'prevSlide', 'touchStart', 'touchMove', 'touchEnd', 'scrollChange'].
-      forEach(fn => this[fn] = this[fn].bind(this));
+    ['render', 'nextSlide'].
+    forEach(fn => this[fn] = this[fn].bind(this));
   }
 
   setStyles() {
     this.slides.forEach((slide, index) => {
       if (index === 0) return;
+
       TweenMax.set(slide, { autoAlpha: 0 });
     });
 
     this.bullets.forEach((bullet, index) => {
       if (index === 0) return;
+
       const txt = bullet.querySelector('.js-slider-bullet__text');
       const line = bullet.querySelector('.js-slider-bullet__line');
-      TweenMax.set(txt, { alpha: 0.25 });
-      TweenMax.set(line, { scaleX: 0, transformOrigin: 'left' });
+
+      TweenMax.set(txt, {
+        alpha: 0.25 });
+
+      TweenMax.set(line, {
+        scaleX: 0,
+        transformOrigin: 'left' });
+
     });
   }
 
   cameraSetup() {
     this.camera = new THREE.OrthographicCamera(
-      this.el.offsetWidth / -2,
-      this.el.offsetWidth / 2,
-      this.el.offsetHeight / 2,
-      this.el.offsetHeight / -2,
-      1,
-      1000
-    );
+    this.el.offsetWidth / -2,
+    this.el.offsetWidth / 2,
+    this.el.offsetHeight / 2,
+    this.el.offsetHeight / -2,
+    1,
+    1000);
+
 
     this.camera.lookAt(this.scene.position);
     this.camera.position.z = 1;
@@ -139,14 +145,17 @@ class Slider {
     this.textures = [];
     this.images.forEach((image, index) => {
       const texture = loader.load(image + '?v=' + Date.now(), this.render);
+
       texture.minFilter = THREE.LinearFilter;
       texture.generateMipmaps = false;
+
       if (index === 0 && this.mat) {
         this.mat.uniforms.size.value = [
-          texture.image.naturalWidth,
-          texture.image.naturalHeight
-        ];
+        texture.image.naturalWidth,
+        texture.image.naturalHeight];
+
       }
+
       this.textures.push(texture);
     });
 
@@ -164,20 +173,21 @@ class Slider {
         size: { value: new THREE.Vector2(1, 1) },
         texture1: { type: 't', value: this.textures[0] },
         texture2: { type: 't', value: this.textures[1] },
-        disp: { type: 't', value: this.disp }
-      },
+        disp: { type: 't', value: this.disp } },
+
       transparent: true,
       vertexShader: this.vert,
-      fragmentShader: this.frag
-    });
+      fragmentShader: this.frag });
+
 
     const geometry = new THREE.PlaneBufferGeometry(
-      this.el.offsetWidth,
-      this.el.offsetHeight,
-      1
-    );
+    this.el.offsetWidth,
+    this.el.offsetHeight,
+    1);
+
 
     const mesh = new THREE.Mesh(geometry, this.mat);
+
     this.scene.add(mesh);
   }
 
@@ -191,8 +201,8 @@ class Slider {
         this.changeTexture();
         this.render.bind(this);
         this.state.animating = false;
-      }
-    });
+      } });
+
 
     const current = this.slides[this.data.current];
     const next = this.slides[this.data.next];
@@ -218,99 +228,98 @@ class Slider {
       TweenMax.to('.js-scroll', 1.5, {
         yPercent: 100,
         alpha: 0,
-        ease: Power4.easeInOut
-      });
+        ease: Power4.easeInOut });
+
+
       this.state.initial = false;
     }
 
-    tl.staggerFromTo(currentImages, 1.5, {
+    tl.
+    staggerFromTo(currentImages, 1.5, {
       yPercent: 0,
-      scale: 1
-    },
-      {
-        yPercent: -185,
-        scaleY: 1.5,
-        ease: Expo.easeInOut
-      }, 0.075).
-      to(currentBulletTxt, 1.5, {
-        alpha: 0.25,
-        ease: Linear.easeNone
-      }, 0).
-      set(currentBulletLine, {
-        transformOrigin: 'right'
-      }, 0).
-      to(currentBulletLine, 1.5, {
-        scaleX: 0,
-        ease: Expo.easeInOut
-      }, 0);
+      scale: 1 },
+    {
+      yPercent: -185,
+      scaleY: 1.5,
+      ease: Expo.easeInOut },
+    0.075).
+    to(currentBulletTxt, 1.5, {
+      alpha: 0.25,
+      ease: Linear.easeNone },
+    0).
+    set(currentBulletLine, {
+      transformOrigin: 'right' },
+    0).
+    to(currentBulletLine, 1.5, {
+      scaleX: 0,
+      ease: Expo.easeInOut },
+    0);
 
-    tl.staggerFromTo(currentText, 2, {
-      yPercent: 0
-    },
+    if (currentText) {
+      tl.
+      fromTo(currentText, 2, {
+        yPercent: 0 },
       {
         yPercent: -100,
-        ease: Power4.easeInOut
-      }, 0.075, 0);
+        ease: Power4.easeInOut },
+      0);
+    }
 
-    tl.set(current, {
-      autoAlpha: 0
-    }).
-      set(next, {
-        autoAlpha: 1
-      }, 1);
+    tl.
+    set(current, {
+      autoAlpha: 0 }).
 
-    tl.staggerFromTo(nextImages, 1.5, {
-      yPercent: 150,
-      scaleY: 1.5
-    },
-      {
-        yPercent: 0,
-        scaleY: 1,
-        ease: Expo.easeInOut
-      }, 0.075, 1).
-      to(nextBulletTxt, 1.5, {
-        alpha: 1,
-        ease: Linear.easeNone
-      }, 1).
-      set(nextBulletLine, {
-        transformOrigin: 'left'
-      }, 1).
-      to(nextBulletLine, 1.5, {
-        scaleX: 1,
-        ease: Expo.easeInOut
-      }, 1);
+    set(next, {
+      autoAlpha: 1 },
+    1);
 
     if (nextText) {
-      tl.fromTo(nextText, 2, {
-        yPercent: 100
-      },
-        {
-          yPercent: 0,
-          ease: Power4.easeInOut
-        }, 1.15);
+      tl.
+      fromTo(nextText, 2, {
+        yPercent: 100 },
+      {
+        yPercent: 0,
+        ease: Power4.easeOut },
+      1.5);
     }
+
+    tl.
+    staggerFromTo(nextImages, 1.5, {
+      yPercent: 150,
+      scaleY: 1.5 },
+    {
+      yPercent: 0,
+      scaleY: 1,
+      ease: Expo.easeInOut },
+    0.075, 1).
+    to(nextBulletTxt, 1.5, {
+      alpha: 1,
+      ease: Linear.easeNone },
+    1).
+    set(nextBulletLine, {
+      transformOrigin: 'left' },
+    1).
+    to(nextBulletLine, 1.5, {
+      scaleX: 1,
+      ease: Expo.easeInOut },
+    1);
 
     tl.play();
   }
 
   prevSlide() {
-    if (this.state.animating) return;
-    this.state.animating = true;
 
-    this.data.current = this.data.current === 0 ? this.data.total : this.data.current - 1;
-    this.data.next = this.data.current === 0 ? this.data.total : this.data.current - 1;
-
-    this.transitionNext();
   }
 
   nextSlide() {
     if (this.state.animating) return;
+
     this.state.animating = true;
+
+    this.transitionNext();
 
     this.data.current = this.data.current === this.data.total ? 0 : this.data.current + 1;
     this.data.next = this.data.current === this.data.total ? 0 : this.data.current + 1;
-
-    this.transitionNext();
   }
 
   changeTexture() {
@@ -318,30 +327,8 @@ class Slider {
     this.mat.uniforms.texture2.value = this.textures[this.data.next];
   }
 
-  touchStart(event) {
-    this.state.touchStartX = event.touches[0].clientX;
-  }
-
-  touchMove(event) {
-    this.state.touchEndX = event.touches[0].clientX;
-  }
-
-  touchEnd() {
-    const swipeDistance = this.state.touchEndX - this.state.touchStartX;
-    if (swipeDistance > 50) {
-      this.prevSlide();
-    } else if (swipeDistance < -50) {
-      this.nextSlide();
-    }
-  }
-
-  scrollChange(event) {
-    const delta = Math.sign(event.deltaY);
-    if (delta > 0) {
-      this.nextSlide();
-    } else if (delta < 0) {
-      this.prevSlide();
-    }
+  listeners() {
+    window.addEventListener('wheel', this.nextSlide, { passive: true });
   }
 
   render() {
@@ -354,19 +341,21 @@ class Slider {
     this.loadTextures();
     this.createMesh();
     this.setStyles();
-
-    this.transitionNext();
-
-    // 터치 이벤트 리스너 추가
-    this.el.addEventListener('touchstart', this.touchStart);
-    this.el.addEventListener('touchmove', this.touchMove);
-    this.el.addEventListener('touchend', this.touchEnd);
-
-    // 스크롤 이벤트 리스너 추가
-    window.addEventListener('wheel', this.scrollChange);
-
     this.render();
-  }
-}
+    this.listeners();
+  }}
 
+
+// Toggle active link
+const links = document.querySelectorAll('.js-nav a');
+
+links.forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    links.forEach(other => other.classList.remove('is-active'));
+    link.classList.add('is-active');
+  });
+});
+
+// Init classes
 const slider = new Slider();
