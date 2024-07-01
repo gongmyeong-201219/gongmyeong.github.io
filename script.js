@@ -368,14 +368,18 @@ class Slider {
   }
 
   init() {
-    this.setup();
-    this.cameraSetup();
-    this.loadTextures();
-    this.createMesh();
-    this.setStyles();
-    this.listeners();
-    this.render();
-  }
+  this.setup();
+  this.cameraSetup();
+  this.loadTextures();
+  this.createMesh();
+  this.setStyles();
+
+  // 초기 슬라이드 설정 추가
+  this.transitionNext();
+
+  this.listeners();
+  this.render();
+}
 }
 
 const slider = new Slider();
