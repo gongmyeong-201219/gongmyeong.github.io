@@ -2,15 +2,15 @@ class Slider {
   constructor() {
     this.bindAll();
 
-    this.vert = `
+    this.vert = 
     varying vec2 vUv;
     void main() {
       vUv = uv;
       gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
     }
-    `;
+    ;
 
-    this.frag = `
+    this.frag = 
     varying vec2 vUv;
 
     uniform sampler2D texture1;
@@ -49,7 +49,7 @@ class Slider {
       
       gl_FragColor = mix(_texture1, _texture2, dispPower);
     }
-    `;
+    ;
 
     this.el = document.querySelector('.js-slider');
     this.inner = this.el.querySelector('.js-slider__inner');
@@ -82,15 +82,11 @@ class Slider {
 
     this.textures = null;
 
-    // Initialize touch variables
-    this.touchStartX = 0;
-    this.touchEndX = 0;
-
     this.init();
   }
 
   bindAll() {
-    ['render', 'nextSlide', 'handleTouchStart', 'handleTouchMove', 'handleTouchEnd'].
+    ['render', 'nextSlide'].
     forEach(fn => this[fn] = this[fn].bind(this));
   }
 
@@ -331,30 +327,8 @@ class Slider {
     this.mat.uniforms.texture2.value = this.textures[this.data.next];
   }
 
-  handleTouchStart(event) {
-    this.touchStartX = event.changedTouches[0].screenX;
-  }
-
-  handleTouchMove(event) {
-    this.touchEndX = event.changedTouches[0].screenX;
-  }
-
-  handleTouchEnd() {
-    if (this.touchEndX < this.touchStartX) {
-      this.nextSlide();
-    }
-    // Optionally, you can add a previous slide functionality
-    // if (this.touchEndX > this.touchStartX) {
-    //   this.prevSlide();
-    // }
-  }
-
   listeners() {
     window.addEventListener('wheel', this.nextSlide, { passive: true });
-    // Add touch event listeners
-    this.el.addEventListener('touchstart', this.handleTouchStart, { passive: true });
-    this.el.addEventListener('touchmove', this.handleTouchMove, { passive: true });
-    this.el.addEventListener('touchend', this.handleTouchEnd, { passive: true });
   }
 
   render() {
@@ -369,8 +343,8 @@ class Slider {
     this.setStyles();
     this.render();
     this.listeners();
-  }
-}
+  }}
+
 
 // Toggle active link
 const links = document.querySelectorAll('.js-nav a');
