@@ -86,7 +86,7 @@ class Slider {
   }
 
   bindAll() {
-    ['render', 'nextSlide'].
+    ['render', 'nextSlide', 'touchStart', 'touchMove', 'touchEnd'].
     forEach(fn => this[fn] = this[fn].bind(this));
   }
 
@@ -268,20 +268,9 @@ class Slider {
     tl.
     set(current, {
       autoAlpha: 0 }).
-
     set(next, {
       autoAlpha: 1 },
     1);
-
-    if (nextText) {
-      tl.
-      fromTo(nextText, 2, {
-        yPercent: 100 },
-      {
-        yPercent: 0,
-        ease: Power4.easeOut },
-      1.5);
-    }
 
     tl.
     staggerFromTo(nextImages, 1.5, {
@@ -304,22 +293,37 @@ class Slider {
       ease: Expo.easeInOut },
     1);
 
+    if (nextText) {
+      tl.
+      fromTo(nextText, 2, {
+        yPercent: 100 },
+      {
+        yPercent: 0,
+        ease: Power4.easeInOut },
+      1.15);
+    }
+
     tl.play();
   }
 
   prevSlide() {
+    if (this.state.animating) return;
+    this.state.animating = true;
 
+    this.data.current = this.data.current === 0 ? this.data.total : this.data.current - 1;
+    this.data.next = this.data.current === 0 ? this.data.total : this.data.current - 1;
+
+    this.transitionNext();
   }
 
   nextSlide() {
     if (this.state.animating) return;
-
     this.state.animating = true;
-
-    this.transitionNext();
 
     this.data.current = this.data.current === this.data.total ? 0 : this.data.current + 1;
     this.data.next = this.data.current === this.data.total ? 0 : this.data.current + 1;
+
+    this.transitionNext();
   }
 
   changeTexture() {
@@ -328,7 +332,48 @@ class Slider {
   }
 
   listeners() {
-    window.addEventListener('wheel', this.nextSlide, { passive: true });
+    window.addEventListener('resize', () => {
+      this.camera.aspect = this.el.offsetWidth / this.el.offsetHeight;
+      this.renderer.setSize(this.el.offsetWidth, this.el.offsetHeight);
+      this.camera.updateProjectionMatrix();
+    });
+
+    this.el.addEventListener('touchstart', this.touchStart);
+    this.el.addEventListener('touchmove', this.touchMove);
+    this.el.addEventListener('touchend', this.touchEnd);
+
+    this.bullets.forEach(bullet => {
+      bullet.addEventListener('click', () => {
+        if (this.state.animating) return;
+        this.state.animating = true;
+
+        const nextIndex = this.bullets.indexOf(bullet);
+        if (this.data.current === nextIndex) {
+          this.state.animating = false;
+          return;
+        }
+
+        this.data.next = nextIndex;
+        this.transitionNext();
+      });
+    });
+  }
+
+  touchStart(event) {
+    this.touchStartX = event.touches[0].clientX;
+  }
+
+  touchMove(event) {
+    this.touchEndX = event.touches[0].clientX;
+  }
+
+  touchEnd() {
+    const swipeDistance = this.touchEndX - this.touchStartX;
+    if (swipeDistance > 50) {
+      this.prevSlide();
+    } else if (swipeDistance < -50) {
+      this.nextSlide();
+    }
   }
 
   render() {
@@ -341,21 +386,9 @@ class Slider {
     this.loadTextures();
     this.createMesh();
     this.setStyles();
-    this.render();
     this.listeners();
+    this.render();
   }}
 
 
-// Toggle active link
-const links = document.querySelectorAll('.js-nav a');
-
-links.forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    links.forEach(other => other.classList.remove('is-active'));
-    link.classList.add('is-active');
-  });
-});
-
-// Init classes
 const slider = new Slider();
