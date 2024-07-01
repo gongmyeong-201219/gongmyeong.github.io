@@ -82,11 +82,15 @@ class Slider {
 
     this.textures = null;
 
+    // Initialize touch variables
+    this.touchStartX = 0;
+    this.touchEndX = 0;
+
     this.init();
   }
 
   bindAll() {
-    ['render', 'nextSlide', 'prevSlide', 'touchStart', 'touchMove', 'touchEnd'].
+    ['render', 'nextSlide', 'handleTouchStart', 'handleTouchMove', 'handleTouchEnd'].
     forEach(fn => this[fn] = this[fn].bind(this));
   }
 
@@ -268,9 +272,20 @@ class Slider {
     tl.
     set(current, {
       autoAlpha: 0 }).
+
     set(next, {
       autoAlpha: 1 },
     1);
+
+    if (nextText) {
+      tl.
+      fromTo(nextText, 2, {
+        yPercent: 100 },
+      {
+        yPercent: 0,
+        ease: Power4.easeOut },
+      1.5);
+    }
 
     tl.
     staggerFromTo(nextImages, 1.5, {
@@ -293,37 +308,22 @@ class Slider {
       ease: Expo.easeInOut },
     1);
 
-    if (nextText) {
-      tl.
-      fromTo(nextText, 2, {
-        yPercent: 100 },
-      {
-        yPercent: 0,
-        ease: Power4.easeInOut },
-      1.15);
-    }
-
     tl.play();
   }
 
   prevSlide() {
-    if (this.state.animating) return;
-    this.state.animating = true;
 
-    this.data.current = this.data.current === 0 ? this.data.total : this.data.current - 1;
-    this.data.next = this.data.current === 0 ? this.data.total : this.data.current - 1;
-
-    this.transitionNext();
   }
 
   nextSlide() {
     if (this.state.animating) return;
+
     this.state.animating = true;
+
+    this.transitionNext();
 
     this.data.current = this.data.current === this.data.total ? 0 : this.data.current + 1;
     this.data.next = this.data.current === this.data.total ? 0 : this.data.current + 1;
-
-    this.transitionNext();
   }
 
   changeTexture() {
@@ -331,49 +331,39 @@ class Slider {
     this.mat.uniforms.texture2.value = this.textures[this.data.next];
   }
 
-  listeners() {
-    window.addEventListener('resize', () => {
-      this.camera.aspect = this.el.offsetWidth / this.el.offsetHeight;
-      this.renderer.setSize(this.el.offsetWidth, this.el.offsetHeight);
-      this.camera.updateProjectionMatrix();
-    });
-
-    this.el.addEventListener('touchstart', this.touchStart);
-    this.el.addEventListener('touchmove', this.touchMove);
-    this.el.addEventListener('touchend', this.touchEnd);
-
-    this.bullets.forEach(bullet => {
-      bullet.addEventListener('click', () => {
-        if (this.state.animating) return;
-        this.state.animating = true;
-
-        const nextIndex = this.bullets.indexOf(bullet);
-        if (this.data.current === nextIndex) {
-          this.state.animating = false;
-          return;
-        }
-
-        this.data.next = nextIndex;
-        this.transitionNext();
-      });
-    });
+  handleTouchStart(event) {
+    this.touchStartX = event.changedTouches[0].screenX;
   }
 
-  touchStart(event) {
-    this.touchStartX = event.touches[0].clientX;
+  handleTouchMove(event) {
+    this.touchEndX = event.changedTouches[0].screenX;
   }
 
-  touchMove(event) {
-    this.touchEndX = event.touches[0].clientX;
-  }
-
-  touchEnd() {
-    const swipeDistance = this.touchEndX - this.touchStartX;
-    if (swipeDistance > 50) {
-      this.prevSlide();
-    } else if (swipeDistance < -50) {
+  handleTouchEnd() {
+    if (this.touchEndX < this.touchStartX) {
       this.nextSlide();
     }
+    // Optionally, you can add a previous slide functionality
+    // if (this.touchEndX > this.touchStartX) {
+    //   this.prevSlide();
+    // }
+  }
+
+  listeners() {
+    window.addEventListener('wheel', this.nextSlide, { passive: true });
+    // Add touch event listeners to the entire slider
+    this.el.addEventListener('touchstart', this.handleTouchStart, { passive: true });
+    this.el.addEventListener('touchmove', this.handleTouchMove, { passive: true });
+    this.el.addEventListener('touchend', this.handleTouchEnd, { passive: true });
+    // Add touch event listeners to the images
+    this.slides.forEach(slide => {
+      const images = slide.querySelectorAll('.js-slide__img');
+      images.forEach(img => {
+        img.addEventListener('touchstart', this.handleTouchStart, { passive: true });
+        img.addEventListener('touchmove', this.handleTouchMove, { passive: true });
+        img.addEventListener('touchend', this.handleTouchEnd, { passive: true });
+      });
+    });
   }
 
   render() {
@@ -386,9 +376,21 @@ class Slider {
     this.loadTextures();
     this.createMesh();
     this.setStyles();
-    this.listeners();
     this.render();
-  }}
+    this.listeners();
+  }
+}
 
+// Toggle active link
+const links = document.querySelectorAll('.js-nav a');
 
+links.forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    links.forEach(other => other.classList.remove('is-active'));
+    link.classList.add('is-active');
+  });
+});
+
+// Init classes
 const slider = new Slider();
