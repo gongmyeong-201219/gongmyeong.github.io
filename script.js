@@ -77,7 +77,9 @@ class Slider {
     this.state = {
       animating: false,
       text: false,
-      initial: true
+      initial: true,
+      touchStartX: 0,
+      touchEndX: 0
     };
 
     this.textures = null;
@@ -86,7 +88,7 @@ class Slider {
   }
 
   bindAll() {
-    ['render', 'nextSlide', 'prevSlide', 'touchStart', 'touchMove', 'touchEnd'].
+    ['render', 'nextSlide', 'prevSlide', 'touchStart', 'touchMove', 'touchEnd', 'scrollChange'].
       forEach(fn => this[fn] = this[fn].bind(this));
   }
 
@@ -242,15 +244,13 @@ class Slider {
         ease: Expo.easeInOut
       }, 0);
 
-    if (currentText) {
-      tl.staggerFromTo(currentText, 2, {
-        yPercent: 0
-      },
-        {
-          yPercent: -100,
-          ease: Power4.easeInOut
-        }, 0.075, 0);
-    }
+    tl.staggerFromTo(currentText, 2, {
+      yPercent: 0
+    },
+      {
+        yPercent: -100,
+        ease: Power4.easeInOut
+      }, 0.075, 0);
 
     tl.set(current, {
       autoAlpha: 0
@@ -293,7 +293,6 @@ class Slider {
     tl.play();
   }
 
-  // 수정된 prevSlide 메서드
   prevSlide() {
     if (this.state.animating) return;
     this.state.animating = true;
@@ -304,7 +303,6 @@ class Slider {
     this.transitionNext();
   }
 
-  // 수정된 nextSlide 메서드
   nextSlide() {
     if (this.state.animating) return;
     this.state.animating = true;
@@ -315,27 +313,34 @@ class Slider {
     this.transitionNext();
   }
 
-  // 수정된 changeTexture 메서드
   changeTexture() {
     this.mat.uniforms.texture1.value = this.textures[this.data.current];
     this.mat.uniforms.texture2.value = this.textures[this.data.next];
   }
 
-  // 터치 이벤트 핸들링 메서드들
   touchStart(event) {
-    this.touchStartX = event.touches[0].clientX;
+    this.state.touchStartX = event.touches[0].clientX;
   }
 
   touchMove(event) {
-    this.touchEndX = event.touches[0].clientX;
+    this.state.touchEndX = event.touches[0].clientX;
   }
 
   touchEnd() {
-    const swipeDistance = this.touchEndX - this.touchStartX;
+    const swipeDistance = this.state.touchEndX - this.state.touchStartX;
     if (swipeDistance > 50) {
       this.prevSlide();
     } else if (swipeDistance < -50) {
       this.nextSlide();
+    }
+  }
+
+  scrollChange(event) {
+    const delta = Math.sign(event.deltaY);
+    if (delta > 0) {
+      this.nextSlide();
+    } else if (delta < 0) {
+      this.prevSlide();
     }
   }
 
@@ -350,13 +355,15 @@ class Slider {
     this.createMesh();
     this.setStyles();
 
-    // 초기 슬라이드 설정
     this.transitionNext();
 
     // 터치 이벤트 리스너 추가
-    this.el.addEventListener('touchstart', this.touchStart.bind(this));
-    this.el.addEventListener('touchmove', this.touchMove.bind(this));
-    this.el.addEventListener('touchend', this.touchEnd.bind(this));
+    this.el.addEventListener('touchstart', this.touchStart);
+    this.el.addEventListener('touchmove', this.touchMove);
+    this.el.addEventListener('touchend', this.touchEnd);
+
+    // 스크롤 이벤트 리스너 추가
+    window.addEventListener('wheel', this.scrollChange);
 
     this.render();
   }
