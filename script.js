@@ -293,6 +293,7 @@ class Slider {
     tl.play();
   }
 
+  // 수정된 prevSlide 메서드
   prevSlide() {
     if (this.state.animating) return;
     this.state.animating = true;
@@ -303,6 +304,7 @@ class Slider {
     this.transitionNext();
   }
 
+  // 수정된 nextSlide 메서드
   nextSlide() {
     if (this.state.animating) return;
     this.state.animating = true;
@@ -313,39 +315,13 @@ class Slider {
     this.transitionNext();
   }
 
+  // 수정된 changeTexture 메서드
   changeTexture() {
     this.mat.uniforms.texture1.value = this.textures[this.data.current];
     this.mat.uniforms.texture2.value = this.textures[this.data.next];
   }
 
-  listeners() {
-    window.addEventListener('resize', () => {
-      this.camera.aspect = this.el.offsetWidth / this.el.offsetHeight;
-      this.renderer.setSize(this.el.offsetWidth, this.el.offsetHeight);
-      this.camera.updateProjectionMatrix();
-    });
-
-    this.el.addEventListener('touchstart', this.touchStart);
-    this.el.addEventListener('touchmove', this.touchMove);
-    this.el.addEventListener('touchend', this.touchEnd);
-
-    this.bullets.forEach(bullet => {
-      bullet.addEventListener('click', () => {
-        if (this.state.animating) return;
-        this.state.animating = true;
-
-        const nextIndex = this.bullets.indexOf(bullet);
-        if (this.data.current === nextIndex) {
-          this.state.animating = false;
-          return;
-        }
-
-        this.data.next = nextIndex;
-        this.transitionNext();
-      });
-    });
-  }
-
+  // 터치 이벤트 핸들링 메서드들
   touchStart(event) {
     this.touchStartX = event.touches[0].clientX;
   }
@@ -368,18 +344,22 @@ class Slider {
   }
 
   init() {
-  this.setup();
-  this.cameraSetup();
-  this.loadTextures();
-  this.createMesh();
-  this.setStyles();
+    this.setup();
+    this.cameraSetup();
+    this.loadTextures();
+    this.createMesh();
+    this.setStyles();
 
-  // 초기 슬라이드 설정 추가
-  this.transitionNext();
+    // 초기 슬라이드 설정
+    this.transitionNext();
 
-  this.listeners();
-  this.render();
-}
+    // 터치 이벤트 리스너 추가
+    this.el.addEventListener('touchstart', this.touchStart.bind(this));
+    this.el.addEventListener('touchmove', this.touchMove.bind(this));
+    this.el.addEventListener('touchend', this.touchEnd.bind(this));
+
+    this.render();
+  }
 }
 
 const slider = new Slider();
