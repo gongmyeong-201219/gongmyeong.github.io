@@ -64,7 +64,7 @@ class Slider {
     this.images = [
       'https://s3-us-west-2.amazonaws.com/s.cdpn.io/58281/bg1.jpg',
       'https://s3-us-west-2.amazonaws.com/s.cdpn.io/58281/bg2.jpg',
-      'https://s3-us-west-2.amazonaws.com/s.cdpn.io/58281/bg3.jpg'
+      'https://images.unsplash.com/photo-1708957127542-dd954b02702a?q=80&w=3774&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
     ];
 
     this.data = {
