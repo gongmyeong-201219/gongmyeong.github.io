@@ -136,29 +136,7 @@
   </span>
 </div>
 
-<div class="simple-player">
-  <audio controls class="audio-player">
-    <source id="audio-player__src" src="https://storage.googleapis.com/chydlx/codepen/simple-music-player/mp3/this-is-life.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-</div>
-
-<script>
-  const audioPlayer = $(".audio-player");
-const audioPlayerSrc = $("#audio-player__src");
-const audioNumbers = $(".audioNumber");
-
-
-audioNumbers.each(function () {
-  $(this).on("click", function (e) {
-    let src = $(this).attr("data-music-src");
-    audioPlayerSrc.attr("src", src)[0];
-    audioPlayer[0].pause();
-    audioPlayer[0].load();
-    audioPlayer[0].play();
-  });
-});
-</script>
+<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1842927468&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/glnymwxutvov" title="공명" target="_blank" style="color: #cccccc; text-decoration: none;">공명</a> · <a href="https://soundcloud.com/glnymwxutvov/sets/gongmyeong" title="共命之鳥" target="_blank" style="color: #cccccc; text-decoration: none;">共命之鳥</a></div>
   
 <!-- partial -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js'></script>
