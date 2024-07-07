@@ -234,18 +234,22 @@ ul, li {
      object-fit: cover;
 }
 
-.simple-player{
-  display: block;
-  position: absolute;
-  top: 4.8%;
-  right: 1.4%;
+.player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
 }
-.simple-player audio{
-  width: 300px;
-  height: 30px;
+
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
 }
-.audioNumber {
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
   cursor: pointer;
-  color: blue;
-  text-decoration: underline;
 }
