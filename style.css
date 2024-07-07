@@ -233,3 +233,10 @@ ul, li {
   -o-object-fit: cover;
      object-fit: cover;
 }
+
+.simple-player{
+  display: block;
+  position: absolute;
+  top: 1%;
+  right: 10%;
+}
