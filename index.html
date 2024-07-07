@@ -136,10 +136,17 @@
   </span>
 </div>
 
-<iframe width="20%" height="8%" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1842927468&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
-  <div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100; display: block; position: absolute; width: 20%; height: 8%; top: 89.8%; right: 5%;">
-    <a href="https://soundcloud.com/glnymwxutvov" title="공명" target="_blank" style="color: #cccccc; text-decoration: none;">공명</a>
-    · <a href="https://soundcloud.com/glnymwxutvov/sets/gongmyeong" title="共命之鳥" target="_blank" style="color: #cccccc; text-decoration: none;">共命之鳥</a></div>
+<div class="player">
+    <audio id="audioPlayer" controls>
+      <source src="https://drive.google.com/uc?export=download&id=1K1jLWOxYgZ9rX44beVL-jOEiV-5EoWDx" type="audio/mp3">
+      이 문장은 사용자의 브라우저가 audio 요소를 지원하지 않을 때 화면에 출력됩니다.
+    </audio>
+    <div class="controls">
+      <button id="prevTrack">Previous</button>
+      <button id="playPauseTrack">Play</button>
+      <button id="nextTrack">Next</button>
+    </div>
+  </div>
   
 <!-- partial -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js'></script>
