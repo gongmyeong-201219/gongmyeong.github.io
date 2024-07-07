@@ -237,6 +237,10 @@ ul, li {
 .simple-player{
   display: block;
   position: absolute;
-  top: 1%;
-  right: 10%;
+  top: 4.8%;
+  right: 3%;
+}
+.simple-player audio{
+  width: 300px;
+  height: 30px;
 }
