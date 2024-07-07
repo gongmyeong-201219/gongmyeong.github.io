@@ -136,57 +136,24 @@
   </span>
 </div>
 
-<!-- <ul class="music-list">
-  <li data-music-src="https://drive.google.com/file/d/1K1jLWOxYgZ9rX44beVL-jOEiV-5EoWDx/view?usp=sharing" class="audioNumber">共命之鳥_Track_01</li>
-  <li data-music-src="https://drive.google.com/file/d/1DOXtF4uf8vY2GIsDFlZuOS1Jk8F7g1qa/view?usp=sharing" class="audioNumber">共命之鳥_Track_02</li>
-</ul> -->
+<audio id="audio1" src="https://drive.google.com/uc?export=download&id=YOUR_FIRST_SONG_FILE_ID"></audio>
+<audio id="audio2" src="https://drive.google.com/uc?export=download&id=YOUR_SECOND_SONG_FILE_ID"></audio>
 
-<div class="simple-player">
-    <audio controls class="audio-player">
-      <source id="audio-player__src" src="https://drive.google.com/uc?export=download&id=1K1jLWOxYgZ9rX44beVL-jOEiV-5EoWDx" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-  </div>
+<script>
+  const audio1 = document.getElementById('audio1');
+  const audio2 = document.getElementById('audio2');
 
-  <div>
-    <span class="audioNumber" data-music-src="https://drive.google.com/uc?export=download&id=1K1jLWOxYgZ9rX44beVL-jOEiV-5EoWDx">共命之鳥_Track_01</span><br>
-    <span class="audioNumber" data-music-src="https://drive.google.com/uc?export=download&id=1DOXtF4uf8vY2GIsDFlZuOS1Jk8F7g1qa">共命之鳥_Track_02</span><br>
-  </div>
+  audio1.addEventListener('ended', () => {
+    audio2.play();
+  });
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-    const audioPlayer = $(".audio-player");
-    const audioPlayerSrc = $("#audio-player__src");
-    const audioNumbers = $(".audioNumber");
+  audio2.addEventListener('ended', () => {
+    audio1.play();
+  });
 
-    let playlist = [];
-    let currentTrackIndex = 0;
-
-    audioNumbers.each(function() {
-      playlist.push($(this).attr("data-music-src"));
-      $(this).on("click", function(e) {
-        currentTrackIndex = playlist.indexOf($(this).attr("data-music-src"));
-        playTrack(currentTrackIndex);
-      });
-    });
-
-    function playTrack(index) {
-      audioPlayerSrc.attr("src", playlist[index]);
-      audioPlayer[0].pause();
-      audioPlayer[0].load();
-      audioPlayer[0].play();
-    }
-
-    audioPlayer.on("ended", function() {
-      currentTrackIndex++;
-      if (currentTrackIndex < playlist.length) {
-        playTrack(currentTrackIndex);
-      }
-    });
-
-    // 초기 재생 트랙 설정
-    playTrack(currentTrackIndex);
-  </script>
+  // Start the first audio
+  audio1.play();
+</script>
   
 <!-- partial -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js'></script>
