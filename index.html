@@ -142,28 +142,51 @@
 </ul> -->
 
 <div class="simple-player">
-  <audio controls class="audio-player">
-    <source id="audio-player__src" src="https://drive.google.com/file/d/1K1jLWOxYgZ9rX44beVL-jOEiV-5EoWDx/view?usp=sharing" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-</div>
+    <audio controls class="audio-player">
+      <source id="audio-player__src" src="https://example.com/song1.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
 
-<script>
-const audioPlayer = $(".audio-player");
-const audioPlayerSrc = $("#audio-player__src");
-const audioNumbers = $(".audioNumber");
+  <div>
+    <span class="audioNumber" data-music-src="https://drive.google.com/file/d/1K1jLWOxYgZ9rX44beVL-jOEiV-5EoWDx/view?usp=drive_link">共命之鳥_Track_01</span><br>
+    <span class="audioNumber" data-music-src="https://drive.google.com/file/d/1DOXtF4uf8vY2GIsDFlZuOS1Jk8F7g1qa/view?usp=drive_link">共命之鳥_Track_02</span><br>
+  </div>
 
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    const audioPlayer = $(".audio-player");
+    const audioPlayerSrc = $("#audio-player__src");
+    const audioNumbers = $(".audioNumber");
 
-audioNumbers.each(function () {
-  $(this).on("click", function (e) {
-    let src = $(this).attr("data-music-src");
-    audioPlayerSrc.attr("src", src)[0];
-    audioPlayer[0].pause();
-    audioPlayer[0].load();
-    audioPlayer[0].play();
-  });
-});
-</script>
+    let playlist = [];
+    let currentTrackIndex = 0;
+
+    audioNumbers.each(function() {
+      playlist.push($(this).attr("data-music-src"));
+      $(this).on("click", function(e) {
+        currentTrackIndex = playlist.indexOf($(this).attr("data-music-src"));
+        playTrack(currentTrackIndex);
+      });
+    });
+
+    function playTrack(index) {
+      audioPlayerSrc.attr("src", playlist[index]);
+      audioPlayer[0].pause();
+      audioPlayer[0].load();
+      audioPlayer[0].play();
+    }
+
+    audioPlayer.on("ended", function() {
+      currentTrackIndex++;
+      if (currentTrackIndex < playlist.length) {
+        playTrack(currentTrackIndex);
+      }
+    });
+
+    // 초기 재생 트랙 설정
+    playTrack(currentTrackIndex);
+  </script>
   
 <!-- partial -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js'></script>
