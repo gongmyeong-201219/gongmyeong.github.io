@@ -147,6 +147,36 @@
       <button id="nextTrack">Next</button>
     </div>
   </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+  const audioPlayer = document.getElementById('audioPlayer');
+  const playPauseButton = document.getElementById('playPauseTrack');
+  const prevButton = document.getElementById('prevTrack');
+  const nextButton = document.getElementById('nextTrack');
+
+  const playlist = [
+    "https://drive.google.com/uc?export=download&id=1K1jLWOxYgZ9rX44beVL-jOEiV-5EoWDx",
+    "https://drive.google.com/uc?export=download&id=1DOXtF4uf8vY2GIsDFlZuOS1Jk8F7g1qa"
+  ];
+
+  let currentTrack = 0;
+
+  audioPlayer.src = playlist[currentTrack];
+
+  playPauseButton.addEventListener('click', () => {
+    if (audioPlayer.paused) {
+      audioPlayer.play();
+      playPauseButton.textContent = 'Pause';
+    } else {
+      audioPlayer.pause();
+      playPauseButton.textContent = 'Play';
+    }
+  });
+
+  prevButton.addEventListener('click', () => {
+    currentTrack = (currentTrack -    
+</script>
   
 <!-- partial -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js'></script>
