@@ -244,3 +244,8 @@ ul, li {
   width: 300px;
   height: 30px;
 }
+.audioNumber {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+}
