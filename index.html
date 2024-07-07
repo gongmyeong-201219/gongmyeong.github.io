@@ -136,24 +136,28 @@
   </span>
 </div>
 
-<audio id="audio1" controls src="https://drive.google.com/file/d/1DOXtF4uf8vY2GIsDFlZuOS1Jk8F7g1qa"></audio>
-<audio id="audio2" controls src="https://drive.google.com/file/d/1K1jLWOxYgZ9rX44beVL-jOEiV-5EoWDx"></audio>
+<audio id="audioPlayer" controls></audio>
 
-<script>
-  const audio1 = document.getElementById('audio1');
-  const audio2 = document.getElementById('audio2');
+  <script>
+    const audioPlayer = document.getElementById('audioPlayer');
+    const playlist = [
+      "https://docs.google.com/uc?export=download&id=1DOXtF4uf8vY2GIsDFlZuOS1Jk8F7g1qa",
+      "https://docs.google.com/uc?export=download&id=1K1jLWOxYgZ9rX44beVL-jOEiV-5EoWDx"
+    ];
+    let currentTrack = 0;
 
-  audio1.addEventListener('ended', () => {
-    audio2.play();
-  });
+    audioPlayer.src = playlist[currentTrack];
 
-  audio2.addEventListener('ended', () => {
-    audio1.play();
-  });
+    audioPlayer.addEventListener('ended', () => {
+      currentTrack = (currentTrack + 1) % playlist.length;
+      audioPlayer.src = playlist[currentTrack];
+      audioPlayer.play();
+    });
 
-  // Start the first audio
-  audio1.play();
-</script>
+    window.onload = () => {
+      audioPlayer.play();
+    };
+  </script>
   
 <!-- partial -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js'></script>
