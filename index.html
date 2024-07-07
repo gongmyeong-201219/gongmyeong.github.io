@@ -175,7 +175,20 @@
   });
 
   prevButton.addEventListener('click', () => {
-    currentTrack = (currentTrack -    
+    currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
+    audioPlayer.src = playlist[currentTrack];
+    audioPlayer.play();
+    playPauseButton.textContent = 'Pause';
+  });
+
+  nextButton.addEventListener('click', () => {
+    currentTrack = (currentTrack + 1) % playlist.length;
+    audioPlayer.src = playlist[currentTrack];
+    audioPlayer.play();
+    playPauseButton.textContent = 'Pause';
+  });
+});
+
 </script>
   
 <!-- partial -->
